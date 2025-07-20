@@ -10,25 +10,33 @@ compute_min_celltype_distances(
   y_col = "y",
   group_col = "subset",
   query_groups,
-  reference_groups
+  reference_groups,
+  combine_query_groups = TRUE,
+  combine_reference_groups = TRUE
 )
 }
 \arguments{
-\item{seurat_obj}{A Seurat object containing spatial coordinates in metadata.}
+\item{seurat_obj}{A Seurat object containing spatial coordinates in its metadata.}
 
-\item{x_col}{Name of column for x-coordinates in metadata.}
+\item{x_col}{Column name for x-coordinates (default: "x").}
 
-\item{y_col}{Name of column for y-coordinates in metadata.}
+\item{y_col}{Column name for y-coordinates (default: "y").}
 
-\item{group_col}{Column indicating cell type or grouping.}
+\item{group_col}{Column in metadata defining cell group labels (e.g., cell type).}
 
-\item{query_groups}{Character vector of cell groups to use as queries.}
+\item{query_groups}{Vector of group names to be used as query cells.}
 
-\item{reference_groups}{Character vector of cell groups to use as references.}
+\item{reference_groups}{Vector of group names to be used as reference cells.}
+
+\item{combine_query_groups}{Logical. Whether to combine all query groups into one (default: TRUE).}
+
+\item{combine_reference_groups}{Logical. Whether to combine all reference groups into one (default: TRUE).}
 }
 \value{
 A data frame with nearest reference cell info for each query cell.
 }
 \description{
-Compute minimum distances between query and reference cell types
+For each query cell, computes the Euclidean distance to the nearest reference cell,
+using spatial coordinates (e.g., x and y centroid positions). Supports combining
+or separating query and reference groups.
 }
