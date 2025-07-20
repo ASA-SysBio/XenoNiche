@@ -1,0 +1,14 @@
+Package: XenoNiche
+Title: Cell-Cell Proximity Analysis
+Version: 0.0.0.9000
+Authors@R: 
+    person("Ahmed", "Abouhashem", , "A.S.A@pitt.edu", role = c("aut", "cre"))
+Description: Tools for analyzing spatial proximity and niche interactions between cell types across species using Seurat objects. Includes minimum-distance calculation between cell subsets based on spatial coordinates.
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
