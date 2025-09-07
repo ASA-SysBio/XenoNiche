@@ -2,11 +2,12 @@
 % Please edit documentation in R/label_cells_by_proximity.R
 \name{label_cells_by_proximity}
 \alias{label_cells_by_proximity}
-\title{Label cells by proximity to target cells within specified FOVs}
+\title{Label cells by proximity to target groups within specified FOVs}
 \usage{
 label_cells_by_proximity(
   seurat_obj,
   cell_ids,
+  column_of_idents,
   radius,
   fov_list,
   column_name = "proximity_label"
@@ -15,23 +16,26 @@ label_cells_by_proximity(
 \arguments{
 \item{seurat_obj}{A \code{Seurat} object containing spatial images with centroid coordinates.}
 
-\item{cell_ids}{Character vector of target cell barcodes/IDs to define the proximity query.}
+\item{cell_ids}{Character vector of \strong{group labels} (e.g., cell types) that define the targets.}
+
+\item{column_of_idents}{Character scalar; name of the metadata column that holds the group labels to match against \code{cell_ids}.}
 
 \item{radius}{Numeric radius (same units as image coordinates) used to label \emph{surrounding} cells around targets.}
 
 \item{fov_list}{Character vector of image/FOV names to evaluate (must match \code{names(seurat_obj@images)}).}
 
-\item{column_name}{(Ignored in return; kept for API parity.) Intended metadata column name if user later stores results.}
+\item{column_name}{Character scalar; the metadata column name to write the resulting labels into
+(default \code{"proximity_label"}). If the column already exists, it will be overwritten (with a message).}
 }
 \value{
-A factor named by cell IDs, with levels:
-\code{c("target","surrounding","others","not selected for analysis")}.
+The input \code{Seurat} object with a new metadata column \code{column_name}
+containing a factor with levels \code{c("target","surrounding","others","not selected for analysis")}.
 }
 \description{
 For each field-of-view (FOV), this function labels cells as:
 \itemize{
-\item \strong{"target"}: cells explicitly provided by \code{cell_ids} that fall in the FOV
-\item \strong{"surrounding"}: non-target cells within \code{radius} (in pixel/coordinate units) of any target cell in that FOV
+\item \strong{"target"}: cells whose \code{column_of_idents} value is in \code{cell_ids} and fall in the FOV
+\item \strong{"surrounding"}: non-target cells within \code{radius} (coordinate units) of any target cell in that FOV
 \item \strong{"others"}: remaining cells within the FOV
 \item \strong{"not selected for analysis"}: cells not in any of the provided FOVs
 }
@@ -42,8 +46,15 @@ Centroids are extracted from \code{object@images[[fov]][["centroids"]]} via
 }
 \examples{
 \donttest{
-# labels <- label_cells_by_proximity(seurat_obj, cell_ids = c("cellA","cellB"),
-#                                    radius = 50, fov_list = c("img1","img2"))
+# seurat_obj <- label_cells_by_proximity(
+#   seurat_obj,
+#   cell_ids = c("Fibroblast","Perivascular"),
+#   column_of_idents = "subset",
+#   radius = 50,
+#   fov_list = c("img1","img2"),
+#   column_name = "prox_labels"
+# )
+# table(seurat_obj[["prox_labels"]][,1])
 }
 
 }
