@@ -31,7 +31,7 @@ devtools::install_github("ASA-SysBio/XenoNiche")
 ##  Citation
 Ahmed S. Abouhashem. *XenoNiche: Spatial Transcriptomics Analysis Tools for Xenium Data*.  
 GitHub repository: [https://github.com/ASA-SysBio/XenoNiche](https://github.com/ASA-SysBio/XenoNiche)  
-(Manuscript in preparation, 2025)
+(Manuscript in preparation, 2026)
 
 ## Contributing
 Contributions and suggestions are welcome! Please open issues or pull requests on the GitHub repository.
