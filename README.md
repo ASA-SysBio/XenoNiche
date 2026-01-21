@@ -9,9 +9,9 @@ XenoNiche is designed to streamline the analysis of spatial transcriptomics data
 
 - Seamless integration with Seurat objects and workflows  
 - Custom algorithms for quantifying spatial proximities between cell types and states  
-- Tools to analyze directional signaling gradients and cellular microenvironment influences  
-- Visualization modules optimized for Xenium data spatial layouts  
-- Flexible functions addressing research questions in tissue microenvironment and cell-cell communication
+- Tools to analyze directional signaling gradients and cellular microenvironment influences (under development)  
+- Visualization modules optimized for Xenium data spatial layouts
+- Flexible functions addressing research questions in tissue microenvironment and cell-cell communication (under development)
 
 ## Purpose
 
